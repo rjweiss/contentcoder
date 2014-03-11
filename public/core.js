@@ -4,15 +4,11 @@ var scotchTodo = angular.module('scotchTodo', []);
 function mainController($scope, $http) {
 	$scope.formData = {};
 
-  $http.get('/api/documents').success(function(data) {
-    $scope.documents = data;
-  });
-
-	$scope.label = function() {
-  	$http.post('/api/documents', $scope.documents).success(function(data) {
-    	console.log(data);
-  	});
-	};
+	//$scope.label = function() {
+  //	$http.post('/api/documents', $scope.documents).success(function(data) {
+  //  	console.log(data);
+  //	});
+	//};
 
 	$http.get('/api/articles').success(function(data) {
 		$scope.articles = data;
