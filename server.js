@@ -52,7 +52,7 @@ var Todo = mongoose.model('Todo', {
 	});
 
 	app.get('/api/articles', function(req, res) {
-		Article.find(function(err, articles) {
+		Article.find({}, 'title hostname cleaned_text', function(err, articles) {
 			if (err) res.send(err);
 			res.json(articles)
 		})
