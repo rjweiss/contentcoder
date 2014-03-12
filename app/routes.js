@@ -12,7 +12,6 @@ module.exports = function (app) {
             if (err) res.send(err);
             res.json(article)
         })
-
     })
 
     app.post('/api/article/labeler', function (req, res) {
@@ -59,4 +58,7 @@ module.exports = function (app) {
     app.get('*', function (req, res) {
         res.sendfile('./public/index.html');
     });
+
+
+
 }
