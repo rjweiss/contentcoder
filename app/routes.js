@@ -6,7 +6,7 @@ module.exports = function (app) {
 
     // api
     app.get('/api/article', function (req, res) {
-        Article.findOne({}, 'title hostname pubDate cleaned_text', function (err, article) {
+        Article.findOneAndUpdate({'labels.0': {$exists:false}}, {'labels.0.shown':true}, 'title hostname pubDate cleaned_text', function (err, article) {
             if (err) res.send(err);
             res.json(article)
         })
@@ -27,12 +27,11 @@ module.exports = function (app) {
     });
 
     app.get('/api/article/labeledcount', function (req, res) {
-        Article.count({'labels.1': {'$exists': true}}, function (err, article) {
+        Article.count({'labels.0.label': {$exists:true}}, function (err, article) {
             if (err) res.send(err);
             res.json(article)
         })
     });
-
 
     app.get('*', function (req, res) {
         res.sendfile('./public/index.html');

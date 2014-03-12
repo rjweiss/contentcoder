@@ -16,7 +16,7 @@
         labels: [{
             label: String,
             user: String,
-            seen: {type: Boolean, default: false},
+            shown: {type: Boolean, default: false},
             _timestamp: Date,
             _version: Number
         }]
