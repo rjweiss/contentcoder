@@ -66,8 +66,8 @@ angular.module('articleController', [])
             updateCounters();
         };
 
-        $scope.discardArticle = function() {
-            $http.post('/api/article/discard', { _id: $scope.article._id})
+        $scope.skipArticle = function() {
+            $http.post('/api/article/skip', { _id: $scope.article._id})
 
             $http.get('/api/article')
                 .success(function(data) {

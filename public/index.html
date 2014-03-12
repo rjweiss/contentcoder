@@ -61,217 +61,214 @@
 </nav>
 <div class="container">
 
-    <!-- HEADER AND TODO COUNT -->
-    <div class="page-header">
-    </div>
+<!-- HEADER AND TODO COUNT -->
+<div class="page-header">
+</div>
 
-    <div class="row">
-        <div class="col-md-8">
-            <div class="well">
-                <h4 class="lead"><strong>{{article.title}}</strong></h4>
+<div class="row"></div>
+<div class="row">
+    <div class="col-md-8">
+        <div class="well">
+            <h4 class="lead"><strong>{{article.title}}</strong></h4>
 
-                <div>{{article.cleaned_text}}</div>
-            </div>
-            <div class="text-center">
-            <button type="button" class="btn btn-lg btn-danger" ng-click="discardArticle()">Discard article</button>
-                <!-- need to ask if user is sure they want to discard-->
-            </div>
-
+            <div>{{article.cleaned_text}}</div>
         </div>
 
-        <div class="col-md-4">
 
-            <div class="panel panel-info">
-                <div class="panel-heading">
-                    <strong>Article Labeling Form</strong>
-                    <button class="btn btn-info navbar-right btn-xs" data-toggle="modal" data-target=".codebook-modal">
-                        Codebook
-                    </button>
-                </div>
+    </div>
 
-                <div class="panel-body">
-                    <p class="lead">Choose a label for this text:</p>
+    <div class="col-md-4">
 
-                    <form role="form">
-                        <div class="form-group">
-                            <div class="radio" ng-repeat="label in labelOptions">
-                                <label>
-                                    <input type="radio" name="LabelsRadios" value="{{label.label}}" ng-model="formData.label">
-                                    {{label.label}}
-                                </label>
-                            </div>
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <strong>Document Labeling Form</strong>
+                <button class="btn btn-info navbar-right btn-xs" data-toggle="modal" data-target=".codebook-modal">
+                    Codebook
+                </button>
+            </div>
+
+            <div class="panel-body">
+                <p class="lead">Choose a label for this text:</p>
+
+                <form role="form">
+                    <div class="form-group">
+                        <div class="radio" ng-repeat="label in labelOptions">
+                            <label>
+                                <input type="radio" name="LabelsRadios" value="{{label.label}}"
+                                       ng-model="formData.label">
+                                {{label.label}}
+                            </label>
                         </div>
+                    </div>
 
-                        <input class="btn btn-default" type="submit" value="Submit" ng-click="updateArticle()">
-
-                    </form>
-                </div>
-
+                    <button class="btn btn-default" type="submit" ng-click="updateArticle()">Submit label</button>
+                    <button type="button" class="btn btn-danger" ng-click="skipArticle()">Skip document</button>
+                    <!-- need to ask if user is sure they want to discard-->
+                </form>
             </div>
 
-
-
-
-
-            <div class="panel panel-info">
-                <div class="panel-heading">
-
-                    <strong>Project information</strong>
-
-                    <button class="btn btn-info navbar-right btn-xs" data-toggle="modal"
-                            data-target=".instructions-modal">
-                        Instructions
-                    </button>
-
-
-                </div>
-                <div class="panel-body">
-
-                    <p class="lead">Name: <strong>Google RSS News</strong></p>
-                    <ul class="list-group">
-                        <li class="list-group-item">
-                            <span class="badge">{{totalcount}}</span>
-                            Total articles
-                        </li>
-                        <li class="list-group-item">
-                            <span class="badge">{{labeledcount}}</span>
-                            Articles labeled
-                        </li>
-                        <li class="list-group-item">
-                            <span class="badge">{{invalidcount}}</span>
-                            Articles discarded
-                        </li>
-                        </li>
-                    </ul>
-                </div>
-            </div>
         </div>
 
-        <div class="modal fade codebook-modal" tabindex="-1" role="dialog" aria-labelledby="codebookLabel"
-             aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h4 class="modal-title">Codebook for project: <strong>Google RSS News</strong></h4>
-                    </div>
-                    <div class="modal-body">
-                        <dl class="dl-horizontal">
-                            <dt>Label 1</dt>
-                            <dd>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                                exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-                                dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-                                mollit anim id est laborum.
-                            </dd>
-                            <dt>Label 2</dt>
-                            <dd>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                                exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-                                dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-                                mollit anim id est laborum.
-                            </dd>
-                            <dt>Label 3</dt>
-                            <dd>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                                exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-                                dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-                                mollit anim id est laborum.
-                            </dd>
-                            <dt>Label 4</dt>
-                            <dd>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                                exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-                                dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-                                mollit anim id est laborum.
-                            </dd>
-                            <dt>Label 5</dt>
-                            <dd>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                                exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-                                dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-                                mollit anim id est laborum.
-                            </dd>
-                        </dl>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 
-                    </div>
-                </div>
-                <!-- /.modal-content -->
+        <div class="panel panel-info">
+            <div class="panel-heading">
+
+                <strong>Project information</strong>
+
+                <button class="btn btn-info navbar-right btn-xs" data-toggle="modal"
+                        data-target=".instructions-modal">
+                    Instructions
+                </button>
+
+
             </div>
-            <!-- /.modal-dialog -->
-        </div>
-        <!-- /.modal -->
+            <div class="panel-body">
 
-        <div class="modal fade instructions-modal" tabindex="-1" role="dialog" aria-labelledby="instructionLabel"
-             aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h4 class="modal-title">Instructions for project: <strong>Google RSS News</strong></h4>
-                    </div>
-                    <div class="modal-body">
-                        <dl>
-                            <dt>Task overview</dt>
-                            <dd><p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh
-                                euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim
-                                veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea
-                                commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse
-                                molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan
-                                et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te
-                                feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil
-                                imperdiet doming id quod mazim placerat facer possim assum. Typi non habent claritatem
-                                insitam; est usus legentis in iis qui facit eorum claritatem. Investigationes
-                                demonstraverunt lectores legere me lius quod ii legunt saepius. Claritas est etiam
-                                processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum est notare
-                                quam littera gothica, quam nunc putamus parum claram, anteposuerit litterarum formas
-                                humanitatis per seacula quarta decima et quinta decima. Eodem modo typi, qui nunc nobis
-                                videntur parum clari, fiant sollemnes in futurum.</p></dd>
-                            <dt>More information</dt>
-                            <dd><p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh
-                                euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim
-                                veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea
-                                commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse
-                                molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan
-                                et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te
-                                feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil
-                                imperdiet doming id quod mazim placerat facer possim assum. Typi non habent claritatem
-                                insitam; est usus legentis in iis qui facit eorum claritatem. Investigationes
-                                demonstraverunt lectores legere me lius quod ii legunt saepius. Claritas est etiam
-                                processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum est notare
-                                quam littera gothica, quam nunc putamus parum claram, anteposuerit litterarum formas
-                                humanitatis per seacula quarta decima et quinta decima. Eodem modo typi, qui nunc nobis
-                                videntur parum clari, fiant sollemnes in futurum.</p></dd>
-                        </dl>
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-
-                    </div>
-                </div>
-                <!-- /.modal-content -->
+                <p class="lead">Name: <strong>Google RSS News</strong></p>
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <span class="badge">{{totalcount}}</span>
+                        Total documents
+                    </li>
+                    <li class="list-group-item">
+                        <span class="badge">{{labeledcount}}</span>
+                        Documents labeled
+                    </li>
+                    <li class="list-group-item">
+                        <span class="badge">{{invalidcount}}</span>
+                        Documents discarded
+                    </li>
+                    </li>
+                </ul>
             </div>
-            <!-- /.modal-dialog -->
         </div>
-        <!-- /.modal -->
-
     </div>
 
-    <div class="row">
+    <div class="modal fade codebook-modal" tabindex="-1" role="dialog" aria-labelledby="codebookLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Codebook for project: <strong>Google RSS News</strong></h4>
+                </div>
+                <div class="modal-body">
+                    <dl class="dl-horizontal">
+                        <dt>Label 1</dt>
+                        <dd>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+                            dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+                            mollit anim id est laborum.
+                        </dd>
+                        <dt>Label 2</dt>
+                        <dd>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+                            dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+                            mollit anim id est laborum.
+                        </dd>
+                        <dt>Label 3</dt>
+                        <dd>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+                            dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+                            mollit anim id est laborum.
+                        </dd>
+                        <dt>Label 4</dt>
+                        <dd>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+                            dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+                            mollit anim id est laborum.
+                        </dd>
+                        <dt>Label 5</dt>
+                        <dd>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+                            dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+                            mollit anim id est laborum.
+                        </dd>
+                    </dl>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 
-        <address>
-            <strong>Full Name</strong><br>
-            <a href="mailto:#">first.last@example.com</a>
-        </address>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
     </div>
+    <!-- /.modal -->
+
+    <div class="modal fade instructions-modal" tabindex="-1" role="dialog" aria-labelledby="instructionLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Instructions for project: <strong>Google RSS News</strong></h4>
+                </div>
+                <div class="modal-body">
+                    <dl>
+                        <dt>Task overview</dt>
+                        <dd><p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh
+                            euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim
+                            veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea
+                            commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse
+                            molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan
+                            et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te
+                            feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil
+                            imperdiet doming id quod mazim placerat facer possim assum. Typi non habent claritatem
+                            insitam; est usus legentis in iis qui facit eorum claritatem. Investigationes
+                            demonstraverunt lectores legere me lius quod ii legunt saepius. Claritas est etiam
+                            processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum est notare
+                            quam littera gothica, quam nunc putamus parum claram, anteposuerit litterarum formas
+                            humanitatis per seacula quarta decima et quinta decima. Eodem modo typi, qui nunc nobis
+                            videntur parum clari, fiant sollemnes in futurum.</p></dd>
+                        <dt>More information</dt>
+                        <dd><p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh
+                            euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim
+                            veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea
+                            commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse
+                            molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan
+                            et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te
+                            feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil
+                            imperdiet doming id quod mazim placerat facer possim assum. Typi non habent claritatem
+                            insitam; est usus legentis in iis qui facit eorum claritatem. Investigationes
+                            demonstraverunt lectores legere me lius quod ii legunt saepius. Claritas est etiam
+                            processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum est notare
+                            quam littera gothica, quam nunc putamus parum claram, anteposuerit litterarum formas
+                            humanitatis per seacula quarta decima et quinta decima. Eodem modo typi, qui nunc nobis
+                            videntur parum clari, fiant sollemnes in futurum.</p></dd>
+                    </dl>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+
+</div>
+
+<div class="row">
+
+    <address>
+        <strong>Full Name</strong><br>
+        <a href="mailto:#">first.last@example.com</a>
+    </address>
+</div>
 </body>
 </html>

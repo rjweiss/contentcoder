@@ -6,7 +6,7 @@ module.exports = function (app) {
 
     // api
 
-    app.post('/api/article/discard', function(req, res) {
+    app.post('/api/article/skip', function(req, res) {
         var formData = req.body;
         Article.findOneAndUpdate({'_id': formData['_id']}, {'valid': false}, function(err, article) {
             if (err) res.send(err);
