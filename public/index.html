@@ -39,7 +39,7 @@
     <script src="js/controllers/main.js"></script>
     <!-- load up our controller -->
     <script src="js/services/articles.js"></script>
-    <!-- load our todo service -->
+    <!-- load our article service -->
     <script src="js/core.js"></script>
     <!-- load our main application -->
 
@@ -51,14 +51,18 @@
     }
 </style>
 <body ng-controller="mainController">
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+        <h1><strong>ContentCoder</strong>
+            <small>(Pre-Alpha)</small>
+        </h1>
 
+    </div>
+</nav>
 <div class="container">
 
     <!-- HEADER AND TODO COUNT -->
     <div class="page-header">
-        <h1>ContentCoder
-            <small>(Pre-Alpha)</small>
-        </h1>
     </div>
 
     <div class="row">
@@ -69,11 +73,7 @@
                 <div>{{article.cleaned_text}}</div>
             </div>
             <div class="text-center">
-                <div class="btn-group text-center">
-                    <button type="button" class="btn btn btn-default" disabled="disabled">Previous</button>
-                    <button type="button" class="btn btn btn-danger">Discard article</button>
-                    <button type="button" class="btn btn btn-default" disabled="disabled">Next</button>
-                </div>
+            <button type="button" class="btn btn-lg btn-danger">Discard article</button>
             </div>
 
         </div>
@@ -93,48 +93,15 @@
 
                     <form role="form">
                         <div class="form-group">
-                            <div class="radio">
+                            <div class="radio" ng-repeat="label in labelOptions">
                                 <label>
-                                    <input type="radio" name="LabelsRadios" id="LabelsRadios1" value="Label1"
-                                           checked>
-                                    Label one
-                                </label>
-                            </div>
-                            <div class="radio">
-                                <label>
-                                    <input type="radio" name="LabelsRadios" id="LabelsRadios2" value="Label2"
-                                           checked>
-                                    Label two
-                                </label>
-                            </div>
-
-                            <div class="radio">
-                                <label>
-                                    <input type="radio" name="LabelsRadios" id="LabelsRadios3" value="Label3"
-                                           checked>
-                                    Label three
-                                </label>
-                            </div>
-
-                            <div class="radio">
-                                <label>
-                                    <input type="radio" name="LabelsRadios" id="LabelsRadios4" value="Label4"
-                                           checked>
-                                    Label four
-                                </label>
-                            </div>
-
-                            <div class="radio">
-                                <label>
-                                    <input type="radio" name="LabelsRadios" id="LabelsRadios5" value="Label5"
-                                           checked>
-                                    Label five
+                                    <input type="radio" name="LabelsRadios" value="{{label.label}}" ng-model="formData.label">
+                                    {{label.label}}
                                 </label>
                             </div>
                         </div>
 
-                        <input class="btn btn-default" type="submit" value="Submit">
-
+                        <input class="btn btn-default" type="submit" value="Submit" ng-click="updateArticle()">
 
                     </form>
                 </div>
@@ -299,12 +266,6 @@
     </div>
 
     <div class="row">
-        <address>
-            <strong>Twitter, Inc.</strong><br>
-            795 Folsom Ave, Suite 600<br>
-            San Francisco, CA 94107<br>
-            <abbr title="Phone">P:</abbr> (123) 456-7890
-        </address>
 
         <address>
             <strong>Full Name</strong><br>

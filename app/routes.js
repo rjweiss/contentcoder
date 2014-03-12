@@ -5,8 +5,22 @@ var Article = require('./models/article')
 module.exports = function (app) {
 
     // api
+
+    app.post('/api/article/labeler', function (req, res) {
+        var formData = req.body;
+        var labelData = {
+            'label':        formData['label'],
+            '_timestamp':   Date.now(),
+            'user':         "test"
+        };
+        Article.findOneAndUpdate({'_id': formData['_id']}, {'labels': labelData}, function(err, article) {
+            if (err) res.send(err);
+            res.json(article)
+        })
+    });
+
     app.get('/api/article', function (req, res) {
-        Article.findOneAndUpdate({'labels.0': {$exists:false}}, {'labels.0.shown':true}, 'title hostname pubDate cleaned_text', function (err, article) {
+        Article.findOne({'labels': null}, 'title hostname pubDate cleaned_text', function (err, article) {
             if (err) res.send(err);
             res.json(article)
         })
@@ -27,7 +41,7 @@ module.exports = function (app) {
     });
 
     app.get('/api/article/labeledcount', function (req, res) {
-        Article.count({'labels.0.label': {$exists:true}}, function (err, article) {
+        Article.count({'labels': {$ne:null}}, function (err, article) {
             if (err) res.send(err);
             res.json(article)
         })

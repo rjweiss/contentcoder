@@ -2,8 +2,35 @@
 
 angular.module('articleController', [])
 
+
     .controller('mainController', function($scope, $http, Articles) {
         $scope.formData = {};
+
+        $scope.labelOptions = [
+            { label: "label1" },
+            { label: "label2" },
+            { label: "label3" },
+            { label: "label4" },
+            { label: "label5" }
+        ]
+
+        function updateCounters() {
+            $http.get('/api/article/invalidcount')
+                .success(function(data) {
+                    $scope.invalidcount = data;
+                })
+                .error(function(data) {
+                    console.log('Error: ' + data);
+                });
+
+            $http.get('/api/article/labeledcount')
+                .success(function(data) {
+                    $scope.labeledcount = data;
+                })
+                .error(function(data) {
+                    console.log('Error: ' + data);
+                });
+        }
 
         // when landing on the page, get all articles and show them
         $http.get('/api/article')
@@ -22,34 +49,22 @@ angular.module('articleController', [])
                 console.log('Error: ' + data);
             });
 
-        $http.get('/api/article/invalidcount')
-            .success(function(data) {
-                $scope.invalidcount = data;
-            })
-            .error(function(data) {
-                console.log('Error: ' + data);
-            });
+        updateCounters();
 
-        $http.get('/api/article/labeledcount')
-            .success(function(data) {
-                $scope.labeledcount = data;
-            })
-            .error(function(data) {
-                console.log('Error: ' + data);
-            });
+        $scope.updateArticle = function() {
+            console.log($scope.formData.label)
+            $http.post('/api/article/labeler', { _id: $scope.article._id, label: $scope.formData.label })
 
-
-        // when submitting the add form, send the text to the node API
-        $scope.updateArticle = function(id) {
-            $http.put('/api/article/' + id, $scope.formData)
+            $http.get('/api/article')
                 .success(function(data) {
-                    $scope.formData = {}; // clear the form so our user is ready to enter another
-                    $scope.articles = data;
+                    $scope.article = data;
                 })
                 .error(function(data) {
                     console.log('Error: ' + data);
                 });
+
+            updateCounters();
         };
 
-
     });
+
