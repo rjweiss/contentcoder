@@ -2,47 +2,199 @@
 <!doctype html>
 
 <!-- ASSIGN OUR ANGULAR MODULE -->
-<html ng-app="scotchTodo">
+<html ng-app="contentCoder">
 <head>
-	<!-- META -->
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1"><!-- Optimize mobile viewport -->
+    <!-- META -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Optimize mobile viewport -->
 
-	<title>Google News Content Coding</title>
+    <title>Google News Content Coding</title>
 
-	<!-- SCROLLS -->
-	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"><!-- load bootstrap -->
-	<style>
-		html 					{ overflow-y:scroll; }
-		body 					{ padding-top:50px; }
-		#todo-list 				{ margin-bottom:30px; }
-	</style>
+    <!-- SCROLLS -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <!-- load bootstrap -->
+    <style>
+        html {
+            overflow-y: scroll;
+        }
 
-	<!-- SPELLS -->
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><!-- load jquery -->
-	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script><!-- load angular -->
-	<script src="core.js"></script>
+        body {
+            padding-top: 50px;
+        }
+
+        #todo-list {
+            margin-bottom: 30px;
+        }
+    </style>
+
+    <!-- SPELLS -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <!-- load jquery -->
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.4/angular.min.js"></script>
+    <!-- load angular -->
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <!-- load bootrap -->
+
+    <script src="js/controllers/main.js"></script>
+    <!-- load up our controller -->
+    <script src="js/services/articles.js"></script>
+    <!-- load our todo service -->
+    <script src="js/core.js"></script>
+    <!-- load our main application -->
+
 
 </head>
-<!-- SET THE CONTROLLER AND GET ALL TODOS -->
+<style type="text/css">
+    body {
+        background: lightgray;
+    }
+</style>
 <body ng-controller="mainController">
-	<div class="container">
 
-		<!-- HEADER AND TODO COUNT -->
-		<div class="jumbotron text-center">
-			<h2>Google RSS News Articles</h2>
-			<h3><span class="label label-info">Total unlabeled articles: {{ articles.length }}</span></h3>
-		</div>
+<div class="container">
 
-		<ul>
-			<li ng-repeat="article in articles | limitTo: 10">
-				{{article.title}};
-			</li>
-		</ul>
-		<button type="submit" class="btn btn-primary btn-lg" ng-click="label()">(Does Not Work) More</button>
+    <!-- HEADER AND TODO COUNT -->
+    <div class="page-header">
+        <h1>ContentCoder
+            <small>(Pre-Alpha)</small>
+        </h1>
+    </div>
 
-	</div>
-	</div>
+    <div class="row">
+        <div class="col-md-8">
+            <div class="well" ng-repeat="article in articles | limitTo : 1">
+                <h4>{{article.title}}</h4>
+                {{article.cleaned_text}}
+            </div>
+            <ul class="pager">
+                <li><a href="#">Previous</a></li>
+                <li><a href="#">Next</a></li>
+            </ul>
+        </div>
+        <div class="col-md-4">
+
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <strong>Article Labeling Form</strong>
+                    <button class="btn btn-info navbar-right btn-xs" data-toggle="modal" data-target=".codebook-modal">
+                        Codebook
+                    </button>
+                </div>
+
+                <div class="panel-body">
+                    <p class="lead">Choose a label for this article</p>
+
+                    <form role="form">
+                        <div class="form-group">
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1"
+                                           checked>
+                                    Option one
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"
+                                           checked>
+                                    Option two
+                                </label>
+                            </div>
+
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="optionsRadios" id="optionsRadios3" value="option3"
+                                           checked>
+                                    Option three
+                                </label>
+                            </div>
+
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="optionsRadios" id="optionsRadios4" value="option4"
+                                           checked>
+                                    Option four
+                                </label>
+                            </div>
+
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="optionsRadios" id="optionsRadios5" value="option5"
+                                           checked>
+                                    Option five
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="text-justified">
+                            <input class="btn btn-default" type="submit" value="Submit">
+                            <button type="button" class="btn btn-danger" data-toggle="button">Mark article as invalid
+                            </button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+
+
+            <div class="panel panel-info">
+                <div class="panel-heading">
+
+                    <strong>Project information</strong>
+
+                    <button class="btn btn-info navbar-right btn-xs" data-toggle="modal" data-target=".instructions-modal">
+                        Instructions
+                    </button>
+
+
+                </div>
+                <div class="panel-body">
+
+                    <p class="lead">Name: <strong>Google RSS News</strong></p>
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <span class="badge">{{articles.length}}</span>
+                            Total articles
+                        </li>
+                        <li class="list-group-item">
+                            <span class="badge">{{articles.length}}</span>
+                            Articles labeled
+                        </li>
+                        <li class="list-group-item">
+                            <span class="badge">{{articles.length}}</span>
+                            Articles discarded
+                        </li>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade codebook-modal" tabindex="-1" role="dialog" aria-labelledby="codebookLabel"
+             aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">Codebook for task: <strong>Google RSS News</strong></h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>One fine body&hellip;</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+        <!-- /.modal -->
+
+    </div>
+
 
 </body>
 </html>
