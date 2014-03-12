@@ -1,4 +1,4 @@
 // js/core.js
 
-angular.module('contentCoder', ['articleController', 'articleService']);
+var contentCoder = angular.module('contentCoder', ['articleController', 'articleService']);
 
