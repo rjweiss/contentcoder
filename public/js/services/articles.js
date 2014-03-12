@@ -6,16 +6,19 @@ angular.module('articleService', [])
     .factory('Articles', function($http) {
         return {
             get : function() {
-                return $http.get('/api/articles');
+                return $http.get('/api/article/total');
+            },
+            get : function() {
+                return $http.get('/api/article/total');
             },
             create : function(articleData) {
-                return $http.post('/api/articles', articleData);
+                return $http.post('/api/article', articleData);
             },
             update : function(articleData) {
-                return $http.put('/api/articles/' + id, articleData);
+                return $http.put('/api/article/' + id, articleData);
             },
             delete : function(id) {
-                return $http.delete('/api/articles/' + id);
+                return $http.delete('/api/article/' + id);
             }
         }
     });

@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Optimize mobile viewport -->
 
-    <title>Google News Content Coding</title>
+    <title>ContentCoder</title>
 
     <!-- SCROLLS -->
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
@@ -63,8 +63,8 @@
 
     <div class="row">
         <div class="col-md-8">
-            <div class="well" ng-repeat="article in articles | limitTo : 1">
-                <h4>{{article.title}}</h4>
+            <div class="well">
+                <h4 class="lead"><strong>{{article.title}}</strong></h4>
                 {{article.cleaned_text}}
             </div>
             <ul class="pager">
@@ -83,7 +83,7 @@
                 </div>
 
                 <div class="panel-body">
-                    <p class="lead">Choose a label for this article</p>
+                    <p class="lead">Choose a label for this text:</p>
 
                     <form role="form">
                         <div class="form-group">
@@ -154,15 +154,15 @@
                     <p class="lead">Name: <strong>Google RSS News</strong></p>
                     <ul class="list-group">
                         <li class="list-group-item">
-                            <span class="badge">{{articles.length}}</span>
+                            <span class="badge">{{totalcount}}</span>
                             Total articles
                         </li>
                         <li class="list-group-item">
-                            <span class="badge">{{articles.length}}</span>
+                            <span class="badge">{{labelcount}}</span>
                             Articles labeled
                         </li>
                         <li class="list-group-item">
-                            <span class="badge">{{articles.length}}</span>
+                            <span class="badge">{{invalidcount}}</span>
                             Articles discarded
                         </li>
                         </li>
@@ -177,7 +177,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h4 class="modal-title">Codebook for task: <strong>Google RSS News</strong></h4>
+                        <h4 class="modal-title">Codebook for project: <strong>Google RSS News</strong></h4>
                     </div>
                     <div class="modal-body">
                         <p>One fine body&hellip;</p>
