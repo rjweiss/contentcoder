@@ -13,7 +13,7 @@
         title: String,
         hostname: String,
         cleaned_text: String,
-        invalid: String,
+        valid: Boolean,
         labels: [{
             label: String,
             shown: {type: Boolean, default: false},

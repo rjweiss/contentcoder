@@ -6,6 +6,15 @@ module.exports = function (app) {
 
     // api
 
+    app.post('/api/article/discard', function(req, res) {
+        var formData = req.body;
+        Article.findOneAndUpdate({'_id': formData['_id']}, {'valid': false}, function(err, article) {
+            if (err) res.send(err);
+            res.json(article)
+        })
+
+    })
+
     app.post('/api/article/labeler', function (req, res) {
         var formData = req.body;
         var labelData = {
@@ -20,7 +29,7 @@ module.exports = function (app) {
     });
 
     app.get('/api/article', function (req, res) {
-        Article.findOne({'labels': null}, 'title hostname pubDate cleaned_text', function (err, article) {
+        Article.findOne({'$and': [{'labels': null}, {'valid': {'$ne': false}}]}, 'title hostname pubDate cleaned_text', function (err, article) {
             if (err) res.send(err);
             res.json(article)
         })
@@ -34,7 +43,7 @@ module.exports = function (app) {
     });
 
     app.get('/api/article/invalidcount', function (req, res) {
-        Article.count({'invalid': true}, function (err, article) {
+        Article.count({'valid': false}, function (err, article) {
             if (err) res.send(err);
             res.json(article)
         })

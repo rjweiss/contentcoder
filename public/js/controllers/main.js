@@ -51,9 +51,23 @@ angular.module('articleController', [])
 
         updateCounters();
 
+
         $scope.updateArticle = function() {
-            console.log($scope.formData.label)
             $http.post('/api/article/labeler', { _id: $scope.article._id, label: $scope.formData.label })
+
+            $http.get('/api/article')
+                .success(function(data) {
+                    $scope.article = data;
+                })
+                .error(function(data) {
+                    console.log('Error: ' + data);
+                });
+
+            updateCounters();
+        };
+
+        $scope.discardArticle = function() {
+            $http.post('/api/article/discard', { _id: $scope.article._id})
 
             $http.get('/api/article')
                 .success(function(data) {
