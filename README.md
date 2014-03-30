@@ -5,6 +5,8 @@ This is a very simple MEAN web application to code content for training and eval
 
 This application was designed with labeling news articles in mind.  This can be extended in the future to other text domains.
 
+You will need to access to a mongodb collection (address defined in /config/database.js)
+
 ## File structure
 
 * /public/ (contains all front-end angular code)
